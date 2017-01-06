@@ -63,7 +63,7 @@ setup(
     },
     entry_points = {
         'console_scripts': [
-            'skele=weather.cli:main',
+            'weather=weather.cli:main',
         ],
     },
     cmdclass = {'test': RunTests},

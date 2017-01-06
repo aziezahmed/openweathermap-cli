@@ -1,22 +1,21 @@
 """
-skele
+weather
 
 Usage:
-  skele hello
-  skele today
-  skele -h | --help
-  skele --version
+  weather today
+  weather -h | --help
+  weather --version
 
 Options:
   -h --help                         Show this screen.
   --version                         Show version.
 
 Examples:
-  skele hello
+  weather today
 
 Help:
-  For help using this tool, please open an issue on the Github repository:
-  https://github.com/rdegges/skele-cli
+  Todo...
+
 """
 
 

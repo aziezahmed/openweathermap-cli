@@ -35,11 +35,11 @@ class RunTests(Command):
 setup(
     name = 'openweathermap-cli',
     version = __version__,
-    description = 'A skeleton command line program in Python.',
+    description = 'A openweathermap command line program in Python.',
     long_description = long_description,
-    url = 'https://github.com/rdegges/skele-cli',
-    author = 'Randall Degges',
-    author_email = 'r@rdegges.com',
+    url = 'https://github.com/aziezahmed/openweathermap-cli',
+    author = 'Aziez Ahmed Chawdhary',
+    author_email = 'aziezahmed@gmail.com',
     license = 'UNLICENSE',
     classifiers = [
         'Intended Audience :: Developers',

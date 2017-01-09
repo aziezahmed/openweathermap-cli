@@ -3,6 +3,7 @@ weather
 
 Usage:
   weather today
+  weather location [--set=<location>]
   weather -h | --help
   weather --version
 
@@ -12,7 +13,9 @@ Options:
 
 Examples:
   weather today
-
+  weather location
+  weather location --set=London,uk
+  
 Help:
   Todo...
 

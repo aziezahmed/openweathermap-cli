@@ -1,31 +1,29 @@
 """The location command."""
 
-from json import dumps
-
 from .base import Base
 
-import configparser
+import os, configparser
 
 class Location(Base):
-    """Say hi, world!"""
     
     def run(self):
+
+        user_config_dir = os.path.expanduser("~") + "/.config"
+        user_config = user_config_dir + "/user_config.ini"
+
         if self.options['--set']:
             config = configparser.ConfigParser()
             config.sections()
-            config.read('config.ini')
+            config.read(user_config)
             config.set('weather','location',self.options['--set'])
             
-            with open('config.ini', 'w') as configfile:
+            with open(user_config, 'w') as configfile:
                 config.write(configfile)
             print('location set to ' + self.options['--set'])
 
         else:
             config = configparser.ConfigParser()
             config.sections()
-            config.read('config.ini')
+            config.read(user_config)
             print('Current location set as ' + config['weather']['location'])
-
-
-        #print('You supplied the following options:', dumps(self.options, indent=2, sort_keys=True))
  

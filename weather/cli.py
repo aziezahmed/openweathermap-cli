@@ -17,8 +17,8 @@ Examples:
   weather location --set=London,uk
   
 Help:
-  Todo...
-
+  For help using this tool, please open an issue on the Github repository:
+  https://github.com/aziezahmed/openweathermap-cli/
 """
 
 
@@ -28,14 +28,31 @@ from docopt import docopt
 
 from . import __version__ as VERSION
 
+import os, shutil, configparser
+
 
 def main():
-    """Main CLI entrypoint."""
+    config = configparser.ConfigParser()
+
+    config.add_section('weather')
+    config['weather']['location'] = "London,uk"
+    with open("default_config.ini", 'w') as f:
+        config.write(f)
+
+    user_config_dir = os.path.expanduser("~") + "/.config"
+    user_config = user_config_dir + "/user_config.ini"
+
+    if not os.path.isfile(user_config):
+        os.makedirs(user_config_dir, exist_ok=True)
+        shutil.copyfile("default_config.ini", user_config)
+
+    config = configparser.ConfigParser()
+    config.read(user_config)
+
+
     import weather.commands
     options = docopt(__doc__, version=VERSION)
 
-    # Here we'll try to dynamically match the command the user is trying to run
-    # with a pre-defined command class we've already created.
     for (k, v) in options.items(): 
         if hasattr(weather.commands, k) and v:
             module = getattr(weather.commands, k)

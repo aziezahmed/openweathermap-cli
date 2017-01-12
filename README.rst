@@ -16,22 +16,30 @@ Installing
 
 Openweathermap-cli is on `PyPi`_ so it can be installed with pip.
 
+.. code-block:: bash
+
     $ pip install openweathermap-cli
 
 Using openweathermap-cli
 ~~~~~~~~~~~~~~~~~
 
-Usage:
-  weather today
-  weather location [--set=<location>]
-  weather -h | --help
-  weather --version
+.. code-block:: bash
+
+    Usage:
+      weather today
+      weather location [--set=<location>]
+      weather -h | --help
+      weather --version
 
 Set your location
+
+.. code-block:: bash
 
     $ weather location --set=<location>
 
 Get today's weather forecast
+
+.. code-block:: bash
 
     $ weather today
 
@@ -39,6 +47,8 @@ Example
 ~~~~~~~
 
 Set the location to London and get today's weather details
+
+.. code-block:: bash
 
     $ weather location --set=London,uk
     $ weather today

@@ -11,12 +11,12 @@ from . import __api_key__ as API_KEY
 class Today(Base):
     
     def run(self):
-        user_config_dir = os.path.expanduser("~") + "/.config"
-        user_config = user_config_dir + "/user_config.ini"
+        user_config_dir = os.path.expanduser("~");
+        user_config_path = user_config_dir + "/.openweathermap-cli-config.ini"
 
         config = configparser.ConfigParser()
         config.sections()
-        config.read(user_config)
+        config.read(user_config_path)
 
         location = config['weather']['location']
 

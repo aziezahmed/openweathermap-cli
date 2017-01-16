@@ -32,22 +32,18 @@ import os, shutil, configparser
 
 
 def main():
-    config = configparser.ConfigParser()
 
+
+    config = configparser.ConfigParser()
     config.add_section('weather')
     config['weather']['location'] = "London,uk"
-    with open("default_config.ini", 'w') as f:
-        config.write(f)
+    
+    user_config_dir = os.path.expanduser("~");
+    user_config_path = user_config_dir + "/.openweathermap-cli-config.ini"
 
-    user_config_dir = os.path.expanduser("~") + "/.config"
-    user_config = user_config_dir + "/user_config.ini"
-
-    if not os.path.isfile(user_config):
-        os.makedirs(user_config_dir, exist_ok=True)
-        shutil.copyfile("default_config.ini", user_config)
-
-    config = configparser.ConfigParser()
-    config.read(user_config)
+    if not os.path.isfile(user_config_path):
+        with open(user_config_path, 'w') as f:
+            config.write(f)
 
 
     import weather.commands

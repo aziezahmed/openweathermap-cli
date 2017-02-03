@@ -56,7 +56,7 @@ setup(
     ],
     keywords = 'cli',
     packages = find_packages(exclude=['docs', 'tests*']),
-    install_requires = ['docopt','pyowm'],
+    install_requires = ['docopt','pyowm', 'tabulate'],
     extras_require = {
         'test': ['coverage', 'pytest', 'pytest-cov'],
     },

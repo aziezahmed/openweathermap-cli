@@ -6,6 +6,8 @@ from .base import Base
 
 import os, configparser
 
+from tabulate import tabulate
+
 from . import __api_key__ as API_KEY
 
 class Today(Base):
@@ -26,8 +28,16 @@ class Today(Base):
         w = observation.get_weather()
 
         location = observation.get_location()
-        print(location.get_name())
-        print(w.get_status())
-        print(str(w.get_temperature('celsius')['temp']) + " degrees celsius")
-        print(w.get_detailed_status())
+
+        table = []
+        table.append(["Temperature",str(w.get_temperature('celsius')['temp'])])
+        table.append(["Summary",w.get_status()])
+        table.append(["Detail", w.get_detailed_status()])
+
+        headers = [location.get_name(),'']
+        print(tabulate(table, headers, tablefmt="psql"))
+
+
+
+        
  

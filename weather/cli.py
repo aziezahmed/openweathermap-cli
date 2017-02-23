@@ -3,6 +3,7 @@ weather
 
 Usage:
   weather today
+  weather week
   weather location [--set=<location>]
   weather -h | --help
   weather --version
@@ -13,6 +14,7 @@ Options:
 
 Examples:
   weather today
+  weather week
   weather location
   weather location --set=London,uk
   

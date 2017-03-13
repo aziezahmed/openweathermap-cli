@@ -32,7 +32,7 @@ class Week(Base):
         table = []
 
         for weather in f:
-            table.append([time.strftime('%d %b %Y', time.localtime(weather.get_reference_time())), weather.get_status(), weather.get_temperature('celsius')['min'], weather.get_temperature('celsius')['max']])
+            table.append([time.strftime('%d %b %Y', time.localtime(weather.get_reference_time())), weather.get_detailed_status(), weather.get_temperature('celsius')['min'], weather.get_temperature('celsius')['max']])
             
         headers = ['Date','Summary','Temp Min', 'Temp Max']
         print(tabulate(table, headers, tablefmt="psql"))

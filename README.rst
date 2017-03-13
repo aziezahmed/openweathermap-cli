@@ -26,7 +26,8 @@ Using openweathermap-cli
 .. code-block:: bash
 
     Usage:
-      weather today
+      weather
+      weather week
       weather location [--set=<location>]
       weather -h | --help
       weather --version
@@ -41,7 +42,13 @@ Get today's weather forecast
 
 .. code-block:: bash
 
-    $ weather today
+    $ weather
+
+Get ther week's weather forecast
+
+.. code-block:: bash
+
+    $ weather week
 
 Example
 ~~~~~~~
@@ -51,7 +58,7 @@ Set the location to London and get today's weather details
 .. code-block:: bash
 
     $ weather location --set=London,uk
-    $ weather today
+    $ weather
 
 Built With
 ----------

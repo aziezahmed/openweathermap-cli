@@ -2,7 +2,7 @@
 weather
 
 Usage:
-  weather today
+  weather
   weather week
   weather location [--set=<location>]
   weather -h | --help
@@ -13,7 +13,7 @@ Options:
   --version                         Show version.
 
 Examples:
-  weather today
+  weather
   weather week
   weather location
   weather location --set=London,uk
@@ -35,7 +35,6 @@ import os, shutil, configparser
 
 def main():
 
-
     config = configparser.ConfigParser()
     config.add_section('weather')
     config['weather']['location'] = "London,uk"
@@ -48,13 +47,14 @@ def main():
             config.write(f)
 
 
-    import weather.commands
+    from weather.commands import Today
+    from weather.commands import Week
+   
     options = docopt(__doc__, version=VERSION)
 
-    for (k, v) in options.items(): 
-        if hasattr(weather.commands, k) and v:
-            module = getattr(weather.commands, k)
-            weather.commands = getmembers(module, isclass)
-            command = [command[1] for command in weather.commands if command[0] != 'Base'][0]
-            command = command(options)
-            command.run()
+    if (options["week"]):
+        forecast = Week(options)
+        forecast.run()
+    else:
+        today = Today(options)
+        today.run()

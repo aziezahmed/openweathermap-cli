@@ -33,11 +33,12 @@ class Today(Base):
 
         table = []
         table.append(["Temperature",str(w.get_temperature('celsius')['temp'])])
+        table.append(["Temp Max",str(w.get_temperature('celsius')['temp_max'])])
+        table.append(["Temp Min",str(w.get_temperature('celsius')['temp_min'])])
         table.append(["Summary",w.get_status()])
         table.append(["Detail", w.get_detailed_status()])
-        table.append(["Sun Rise", time.strftime('%H:%M:%S', time.localtime(w.get_sunrise_time()))])
-        table.append(["Sun Set", time.strftime('%H:%M:%S', time.localtime(w.get_sunset_time()))])
-
+        table.append(["Sunrise", time.strftime('%H:%M:%S', time.localtime(w.get_sunrise_time()))])
+        table.append(["Sunset", time.strftime('%H:%M:%S', time.localtime(w.get_sunset_time()))])
         
         headers = [location.get_name(),'']
         print(tabulate(table, headers, tablefmt="psql"))

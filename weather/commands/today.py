@@ -17,26 +17,18 @@ from tabulate import tabulate
 from . import __api_key__ as API_KEY
 
 class Today(Base):
+
+    def __init__(self, lat, lon, *args, **kwargs):
+        self.lat = lat
+        self.lon = lon
+
+        super(Today,self).__init__(*args, **kwargs)
     
     def run(self):
-        user_config_dir = os.path.expanduser("~");
-        user_config_path = user_config_dir + "/.openweathermap-cli-config.ini"
-
-        config = configparser.ConfigParser()
-        config.sections()
-        config.read(user_config_path)
-
-        ##location = config['weather']['location']
-
-        send_url = 'http://freegeoip.net/json'
-        r = requests.get(send_url)
-        j = json.loads(r.text)
-        lat = j['latitude']
-        lon = j['longitude']
 
         owm = pyowm.OWM(API_KEY)
 
-        observation = owm.weather_at_coords(lat,lon)
+        observation = owm.weather_at_coords(self.lat,self.lon)
         w = observation.get_weather()
 
         location = observation.get_location()

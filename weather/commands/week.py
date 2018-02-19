@@ -13,19 +13,17 @@ from tabulate import tabulate
 from . import __api_key__ as API_KEY
 
 class Week(Base):
+
+    def __init__(self, lat, lon, *args, **kwargs):
+        self.lat = lat
+        self.lon = lon
+        
+        super(Week,self).__init__(*args, **kwargs)
     
     def run(self):
-        user_config_dir = os.path.expanduser("~");
-        user_config_path = user_config_dir + "/.openweathermap-cli-config.ini"
-
-        config = configparser.ConfigParser()
-        config.sections()
-        config.read(user_config_path)
-
-        location = config['weather']['location']
 
         owm = pyowm.OWM(API_KEY)
-        forecast = owm.daily_forecast(location, limit=5)
+        forecast = owm.daily_forecast_at_coords(self.lat,self.lon, limit=5)
         f = forecast.get_forecast()
         location = f.get_location()
         

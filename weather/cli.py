@@ -4,7 +4,6 @@ weather
 Usage:
   weather
   weather week
-  weather location [--set=<location>]
   weather -h | --help
   weather --version
 
@@ -15,37 +14,27 @@ Options:
 Examples:
   weather
   weather week
-  weather location
-  weather location --set=London,uk
   
 Help:
   For help using this tool, please open an issue on the Github repository:
   https://github.com/aziezahmed/openweathermap-cli/
 """
 
+import requests
 
-from inspect import getmembers, isclass
+import json
 
 from docopt import docopt
 
 from . import __version__ as VERSION
 
-import os, shutil, configparser
-
-
 def main():
 
-    config = configparser.ConfigParser()
-    config.add_section('weather')
-    config['weather']['location'] = "London,uk"
-    
-    user_config_dir = os.path.expanduser("~");
-    user_config_path = user_config_dir + "/.openweathermap-cli-config.ini"
-
-    if not os.path.isfile(user_config_path):
-        with open(user_config_path, 'w') as f:
-            config.write(f)
-
+    geo_location_url = 'http://freegeoip.net/json'
+    request = requests.get(geo_location_url)
+    location = json.loads(request.text)
+    lat = location['latitude']
+    lon = location['longitude']
 
     from weather.commands import Today
     from weather.commands import Week
@@ -53,8 +42,8 @@ def main():
     options = docopt(__doc__, version=VERSION)
 
     if (options["week"]):
-        forecast = Week(options)
+        forecast = Week(lat,lon,options)
         forecast.run()
     else:
-        today = Today(options)
+        today = Today(lat,lon,options)
         today.run()

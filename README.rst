@@ -30,15 +30,8 @@ Using openweathermap-cli
     Usage:
       weather
       weather week
-      weather location [--set=<location>]
       weather -h | --help
       weather --version
-
-Set your location
-
-.. code-block:: bash
-
-    $ weather location --set=<location>
 
 Get today's weather forecast
 
@@ -46,7 +39,7 @@ Get today's weather forecast
 
     $ weather
 
-Get ther week's weather forecast
+Get the week's weather forecast
 
 .. code-block:: bash
 
@@ -55,12 +48,23 @@ Get ther week's weather forecast
 Example
 ~~~~~~~
 
-Set the location to London and get today's weather details
+Get today's weather details
 
 .. code-block:: bash
 
-    $ weather location --set=London,uk
-    $ weather
+    $ weather 
+    +-----------------------+------------+
+    | City of Westminster   |            |
+    |-----------------------+------------|
+    | Temperature           | 10.45      |
+    | Temp Max              | 12.0       |
+    | Temp Min              | 9.0        |
+    | Summary               | Rain       |
+    | Detail                | light rain |
+    | Sunrise               | 07:05:26   |
+    | Sunset                | 17:23:52   |
+    +-----------------------+------------+
+
 
 Built With
 ----------

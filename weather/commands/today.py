@@ -4,6 +4,10 @@ import pyowm
 
 import time
 
+import requests
+
+import json
+
 from .base import Base
 
 import os, configparser
@@ -22,11 +26,17 @@ class Today(Base):
         config.sections()
         config.read(user_config_path)
 
-        location = config['weather']['location']
+        ##location = config['weather']['location']
+
+        send_url = 'http://freegeoip.net/json'
+        r = requests.get(send_url)
+        j = json.loads(r.text)
+        lat = j['latitude']
+        lon = j['longitude']
 
         owm = pyowm.OWM(API_KEY)
 
-        observation = owm.weather_at_place(location)
+        observation = owm.weather_at_coords(lat,lon)
         w = observation.get_weather()
 
         location = observation.get_location()

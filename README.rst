@@ -22,6 +22,12 @@ Openweathermap-cli is on `PyPi`_ so it can be installed with pip.
 
     $ pip install openweathermap-cli
 
+To upgrade use the -U flag.
+
+.. code-block:: bash
+
+    $ pip install -U openweathermap-cli
+    
 Using openweathermap-cli
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

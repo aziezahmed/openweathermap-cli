@@ -1,4 +1,4 @@
-__api_key__ = 'ADD_YOUR_OPENWEATHERMAP_API_KEY_HERE'
+__api_key__ = 'API_KEY'
 from .today import *
 from .week import *
 

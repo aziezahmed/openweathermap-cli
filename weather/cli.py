@@ -30,7 +30,7 @@ from . import __version__ as VERSION
 
 def main():
 
-    geo_location_url = 'http://freegeoip.net/json'
+    geo_location_url = 'https://freegeoip.live/json/'
     request = requests.get(geo_location_url)
     location = json.loads(request.text)
     lat = location['latitude']

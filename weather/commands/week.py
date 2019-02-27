@@ -10,7 +10,7 @@ import os, configparser
 
 from tabulate import tabulate
 
-from . import __api_key__ as API_KEY
+from weather.user_settings import UserSettings
 
 class Week(Base):
 
@@ -22,7 +22,10 @@ class Week(Base):
     
     def run(self):
 
-        owm = pyowm.OWM(API_KEY)
+        user_settings = UserSettings()
+        api_key = user_settings.get_api_key()
+
+        owm = pyowm.OWM(api_key)
         forecast = owm.daily_forecast_at_coords(self.lat,self.lon, limit=5)
         f = forecast.get_forecast()
         location = f.get_location()

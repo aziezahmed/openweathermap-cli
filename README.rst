@@ -3,8 +3,6 @@ openweathermap-cli
 
 |PyPI version|
 
-*Not currently working due to an API change*
-
 *A command line application for displaying weather details, written in Python.*
 
 Getting Started

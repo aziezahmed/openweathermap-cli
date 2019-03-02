@@ -28,6 +28,15 @@ To upgrade use the -U flag.
 
     $ pip install -U openweathermap-cli
     
+Adding your API key
+~~~~~~~~~~~~~~~~~~~
+
+To begin you will need to add your API key. If you do not have an API key you can get one free from `Open Weather Map`_.
+
+.. code-block:: bash
+
+  $ weather api YOUR00API00KEY00GOES00HERE
+
 Using openweathermap-cli
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

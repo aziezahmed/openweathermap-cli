@@ -31,21 +31,26 @@ class Today(Base):
 
         owm = pyowm.OWM(api_key)
 
-        observation = owm.weather_at_coords(self.lat,self.lon)
-        w = observation.get_weather()
+        mgr = owm.weather_manager()
+        one_call = mgr.one_call(lat=self.lat, lon=self.lon)
 
-        location = observation.get_location()
+        weather = one_call.current
+        temperature = weather.temperature("celsius").get("temp")
+        feels_like = weather.temperature("celsius").get("feels_like")
+
+        if(not temperature):
+            temperature = weather.temperature("celsius").get("day")
+            feels_like = weather.temperature("celsius").get("feels_like_day")
+        status = weather.status
+        detailed_status = weather.detailed_status
 
         table = []
-        table.append(["Temperature",str(w.get_temperature('celsius')['temp'])])
-        table.append(["Temp Max",str(w.get_temperature('celsius')['temp_max'])])
-        table.append(["Temp Min",str(w.get_temperature('celsius')['temp_min'])])
-        table.append(["Summary",w.get_status()])
-        table.append(["Detail", w.get_detailed_status()])
-        table.append(["Sunrise", time.strftime('%H:%M:%S', time.localtime(w.get_sunrise_time()))])
-        table.append(["Sunset", time.strftime('%H:%M:%S', time.localtime(w.get_sunset_time()))])
+        table.append(["Temperature",temperature])
+        table.append(["Feels Like",feels_like])
+        table.append(["Status",status])
+        table.append(["Detail",detailed_status])
         
-        headers = [location.get_name(),'']
+        headers = ["Weather",'']
         print(tabulate(table, headers, tablefmt="psql"))
 
 
